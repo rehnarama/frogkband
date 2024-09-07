@@ -49,7 +49,6 @@ public class Instrument : MonoBehaviour
         if (Physics.Raycast(transform.position - transform.rotation * Vector3.forward, transform.rotation * Vector3.forward, out hit, 10f, 1 << 6))
         {
             pointholder.Score++;
-            Debug.Log(hit);
             Destroy(hit.rigidbody.gameObject);
         }
 

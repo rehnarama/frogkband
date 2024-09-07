@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FluidMidi;
@@ -15,6 +16,8 @@ public class RythmManager : MonoBehaviour
     public Note NotePrefab;
     public StreamingAsset Song;
     public float NoteOffset;
+    public SongPlayer songPlayer;
+    public float delay = 5f;
 
     public List<Instrument> Instruments;
 
@@ -34,9 +37,9 @@ public class RythmManager : MonoBehaviour
             {
                 if (midiEvent.MidiEventType == MidiEventType.NoteOn)
                 {
-                    Instrument instrument = Instruments[track.Index % Instruments.Count];
+                    Instrument instrument = Instruments[midiEvent.Note % Instruments.Count];
                     var note = Instantiate(NotePrefab);
-                    note.Time = midiEvent.Time * secondsPerTick + NoteOffset;
+                    note.Time = midiEvent.Time * secondsPerTick + NoteOffset + delay;
                     note.TargetPosition = instrument.transform.position;
                     note.GetComponent<Rigidbody>().MovePosition(instrument.transform.position - Vector3.back);
                     note.UpdateTime(0f);
@@ -44,6 +47,16 @@ public class RythmManager : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine(StartAfterDelay());
+    }
+    IEnumerator StartAfterDelay()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Playing???");
+        songPlayer.Play();
     }
 
     // Update is called once per frame

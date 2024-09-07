@@ -553,7 +553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 3
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -1529,6 +1529,8 @@ MonoBehaviour:
   Song:
     path: mario120.mid
   NoteOffset: 0.22
+  songPlayer: {fileID: 1419825456}
+  delay: 3
   Instruments:
   - {fileID: 8856948318266262359}
   - {fileID: 1405789383}
@@ -1549,7 +1551,7 @@ MonoBehaviour:
   synthesizer: {fileID: 1419825457}
   song:
     path: mario120.mid
-  playOnStart: 1
+  playOnStart: 0
   unloadOnStop:
     Enabled: 1
     Value: 3
