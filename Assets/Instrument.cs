@@ -18,15 +18,18 @@ public class Instrument : MonoBehaviour
         var action = playerMap.actions[actionIndex];
 
         var renderer = GetComponent<MeshRenderer>();
-        Material originalMaterial = null;
+        Material[] originalMaterials = null;
         action.started += ctx =>
         {
-            originalMaterial = renderer.material;
-            renderer.material = pressedMaterial;
+            originalMaterials = renderer.materials;
+            var newMaterials = renderer.materials;
+            newMaterials[2] = pressedMaterial;
+
+            renderer.materials = newMaterials;
         };
         action.canceled += ctx =>
         {
-            renderer.material = originalMaterial;
+            renderer.materials = originalMaterials;
         };
 
     }

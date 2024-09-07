@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using IntervalTree;
 using NUnit.Framework;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 struct NoteOld
 {
@@ -14,34 +16,35 @@ struct Song
 
 public class RythmManager : MonoBehaviour
 {
-    public GameObject NotePrefab;
+    public Note NotePrefab;
 
-    private Song song;
+    public List<Instrument> Instruments;
+
+    private List<Note> notes = new List<Note>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        var trackA = new IntervalTree<ulong, NoteOld>();
-        var trackB = new IntervalTree<ulong, NoteOld>();
-        var trackC = new IntervalTree<ulong, NoteOld>();
-        var trackD = new IntervalTree<ulong, NoteOld>();
-        trackA.Add(1, 2, new NoteOld());
-        trackB.Add(2, 2, new NoteOld());
-        trackC.Add(3, 5, new NoteOld());
-        trackD.Add(4, 10, new NoteOld());
-
-        song = new Song()
+        for (int i = 0; i < 50; i++)
         {
-            tracks = new List<IIntervalTree<ulong, NoteOld>>
-            {
-                trackA
-            }
-        };
+            Instrument instrument = Instruments[Random.Range(0, Instruments.Count)];
+            int delay = i;
+            var note = Instantiate(NotePrefab);
+            note.Time = delay;
+            note.TargetPosition = instrument.transform.position;
+            note.GetComponent<Rigidbody>().MovePosition(instrument.transform.position);
+            note.UpdateTime(0f);
+            notes.Add(note);
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        foreach (var note in notes)
+        {
+            note.UpdateTime(Time.fixedTime);
+        }
 
     }
 }

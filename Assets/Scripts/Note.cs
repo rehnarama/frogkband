@@ -2,21 +2,25 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    public float Speed = 1.0f;
+    public float Speed;
+    public float Time;
+    public Vector3 TargetPosition;
 
     private Rigidbody rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void UpdateTime(float Elapsed)
     {
+        float delta = Time - Elapsed;
+        float y = delta * Speed + TargetPosition.y;
+
         rb.MovePosition(
-            rb.position + Vector3.down * Speed
+            new Vector3(TargetPosition.x, y, TargetPosition.z)
         );
     }
 }
