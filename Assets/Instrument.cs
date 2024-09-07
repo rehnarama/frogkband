@@ -26,11 +26,30 @@ public class Instrument : MonoBehaviour
             newMaterials[2] = pressedMaterial;
 
             renderer.materials = newMaterials;
+            CheckNote();
         };
         action.canceled += ctx =>
         {
             renderer.materials = originalMaterials;
         };
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawRay(
+            transform.position, transform.rotation * Vector3.forward * 10f
+        );
+    }
+
+    void CheckNote()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position - transform.rotation * Vector3.forward, transform.rotation * Vector3.forward, out hit, 10f, 1 << 6))
+        {
+            Debug.Log(hit);
+            Destroy(hit.rigidbody.gameObject);
+        }
 
     }
 }

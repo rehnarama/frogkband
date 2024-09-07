@@ -1,18 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using IntervalTree;
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-struct NoteOld
-{
-}
-
-struct Song
-{
-    public List<IIntervalTree<ulong, NoteOld>> tracks;
-}
 
 public class RythmManager : MonoBehaviour
 {
@@ -30,7 +24,7 @@ public class RythmManager : MonoBehaviour
             Instrument instrument = Instruments[Random.Range(0, Instruments.Count)];
             int delay = i;
             var note = Instantiate(NotePrefab);
-            note.Time = delay;
+            note.Time = delay + 10;
             note.TargetPosition = instrument.transform.position;
             note.GetComponent<Rigidbody>().MovePosition(instrument.transform.position);
             note.UpdateTime(0f);
@@ -41,6 +35,8 @@ public class RythmManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        notes = notes.Where(note => !note.IsDestroyed()).ToList();
+
         foreach (var note in notes)
         {
             note.UpdateTime(Time.fixedTime);
