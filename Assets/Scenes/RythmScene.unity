@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4637f3e21ab913543a53b58acd0b326e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointholder: {fileID: 1419825456}
+  pointholder: {fileID: 1419825459}
   points: {fileID: 1607808583}
 --- !u!1001 &586276064
 PrefabInstance:
@@ -1151,7 +1151,7 @@ PrefabInstance:
     - target: {fileID: 3267946190376078638, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: pointholder
       value: 
-      objectReference: {fileID: 1419825456}
+      objectReference: {fileID: 1419825459}
     - target: {fileID: 5671687155958963902, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: m_Name
       value: Instrument3
@@ -1239,7 +1239,7 @@ PrefabInstance:
     - target: {fileID: 3267946190376078638, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: pointholder
       value: 
-      objectReference: {fileID: 1419825456}
+      objectReference: {fileID: 1419825459}
     - target: {fileID: 5671687155958963902, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: m_Name
       value: Instrument4
@@ -1452,7 +1452,7 @@ PrefabInstance:
     - target: {fileID: 3267946190376078638, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: pointholder
       value: 
-      objectReference: {fileID: 1419825456}
+      objectReference: {fileID: 1419825459}
     - target: {fileID: 5671687155958963902, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: m_Name
       value: Instrument2
@@ -1487,7 +1487,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1419825454}
   - component: {fileID: 1419825455}
+  - component: {fileID: 1419825457}
   - component: {fileID: 1419825456}
+  - component: {fileID: 1419825458}
+  - component: {fileID: 1419825459}
   m_Layer: 0
   m_Name: RythmManager
   m_TagString: Untagged
@@ -1523,12 +1526,154 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NotePrefab: {fileID: 8102267250656764579, guid: 1c544e2f46f29044ea171a405a129eaf, type: 3}
+  Song:
+    path: mario120.mid
+  NoteOffset: 0.22
   Instruments:
   - {fileID: 8856948318266262359}
   - {fileID: 1405789383}
   - {fileID: 790073747}
   - {fileID: 896045220}
 --- !u!114 &1419825456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419825453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7ebbfa35eb5254bbbedaf0354cc4e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  synthesizer: {fileID: 1419825457}
+  song:
+    path: mario120.mid
+  playOnStart: 1
+  unloadOnStop:
+    Enabled: 1
+    Value: 3
+  loop:
+    Enabled: 0
+    Value: 0
+  endTicks:
+    Enabled: 0
+    Value: 0
+  gain: 0.2
+  tempo: 1
+  channels: -1
+--- !u!114 &1419825457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419825453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6935756e2d15d42448e50d732fdfa802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFont:
+    path: Creative (emu10k1)8MBGMSFX.SF2
+--- !u!82 &1419825458
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419825453}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 41024a104ad33a14d98b119abec2fad6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1419825459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2016,7 +2161,7 @@ PrefabInstance:
     - target: {fileID: 3267946190376078638, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: pointholder
       value: 
-      objectReference: {fileID: 1419825456}
+      objectReference: {fileID: 1419825459}
     - target: {fileID: 5671687155958963902, guid: 21746733aca30e4408ff09328bcb9b26, type: 3}
       propertyPath: m_Name
       value: Instrument1
