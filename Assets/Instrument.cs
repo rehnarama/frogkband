@@ -7,6 +7,7 @@ public class Instrument : MonoBehaviour
     public InputActionAsset inputAction;
     public int actionMapIndex;
     public int actionIndex;
+    public Pointholder pointholder;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,6 +48,7 @@ public class Instrument : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position - transform.rotation * Vector3.forward, transform.rotation * Vector3.forward, out hit, 10f, 1 << 6))
         {
+            pointholder.Score++;
             Debug.Log(hit);
             Destroy(hit.rigidbody.gameObject);
         }
